@@ -15,7 +15,7 @@ if (isset($_SESSION['errorResponse'])) {
 }
 
 #Check for set SESSION COOKIES
-if(isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
+if (isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
     $userName = $_SESSION['cookieUname'];
     $passWord = $_SESSION['cookiePass'];
 } else {
@@ -24,16 +24,18 @@ if(isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
 }
 
 #This is the code to get it working w/ cookies but it would not work
-//#Check for set COOKIES
-//if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
-//    $userName = $_COOKIE['userName'];
-//    $passWord = $_COOKIE['passWord'];
-//} else {
-//    $userName = null;
-//    $passWord = null;
-//}
+#Check for set COOKIES
+if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
+    $userName = $_COOKIE['userName'];
+    $passWord = $_COOKIE['passWord'];
+} else {
+    $userName = null;
+    $passWord = null;
+}
 
-//print_r($_COOKIE);
+
+
+//print_r($_SESSION);
 //print_r($_SESSION['cookieUname']);
 //print_r($_SESSION['cookiePass']);
 //print_r($_COOKIE['userName']);
@@ -48,6 +50,8 @@ if(isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
 </head>
 
 <body>
+
+<pre><?php print_r($_COOKIE); ?> </pre>
 
 <h2>Login Form</h2>
 
@@ -71,15 +75,17 @@ if(isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
 
     <div class="container">
         <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" value="<?=$userName?>" required>
+        <input type="text" placeholder="Enter Username" name="username" value="<?= $userName ?>" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="pass" value="<?=$passWord ?>" required>
+        <input type="password" placeholder="Enter Password" name="pass" value="<?= $passWord ?>" required>
 
         <button type="submit">Login</button>
         <!-- This uses one line if statement to check if checkbox is checked and if it is keep it checked and if not keep it unchecked -->
         <!-- By default it will Remember me will be checked, but if user unchecks / checks upon submitting it will remember the users choice. -->
-        <input type="checkbox" name="checkboxRemember" <?=(isset($_POST['checkboxRemember'])) ?  "checked='checked'" : (!(isset($_POST['checkboxRemember']))) ? " " : ($_POST['checkboxRemember'] == null) ? "checked='checked'" : " "; ?> > Remember me
+        <input type="checkbox"
+               name="checkboxRemember" <?= (isset($_POST['checkboxRemember'])) ? "checked='checked'" : (!(isset($_POST['checkboxRemember']))) ? " " : ($_POST['checkboxRemember'] == null) ? "checked='checked'" : " "; ?> >
+        Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
