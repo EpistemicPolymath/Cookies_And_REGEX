@@ -20,21 +20,32 @@ $password = $_POST['pass'];
 
 if (isset($_POST['checkboxRemember'])) {
 
+    #Set Cookie to last for a year
+    $expire = strtotime("+1 year");
+
 #Set Cookies for Username and Password
-    setcookie('userName', $username, time() - 2000, '/');
-    setcookie('passWord', $password, time() - 2000, '/');
-    #Cookies were not working so I used sessions instead
-    $_SESSION['cookieUname'] = $username;
-    $_SESSION['cookiePass'] = $password;
+    setcookie('userName', $username, $expire, '/');
+    setcookie('passWord', $password, $expire, '/');
+    #Session Setup setting Session Variables
+    // $_SESSION['cookieUname'] = $username;
+    // $_SESSION['cookiePass'] = $password;
 
 } else {
 
-    setcookie("userName", "", time() - 3600);
-    setcookie("passWord", "", time() - 3600);
-    #Cookies were not working so I used sessions instead
-    unset($_SESSION['cookieUname']);
-    unset($_SESSION['cookiePass']);
+    if ((isset($_COOKIE['userName'])) && (isset($_COOKIE['passWord']))) {
+
+        unset($_COOKIE['userName']);
+        unset($_COOKIE['passWord']);
+        setcookie("userName", ' ', time() - 3600, '/');
+        setcookie("passWord", ' ', time() - 3600, '/');
+        #Session UnSet
+//    unset($_SESSION['cookieUname']);
+//    unset($_SESSION['cookiePass']);
+
+    }
+
 }
+
 
 //if (isset($_POST['checkboxRemember'])){
 //

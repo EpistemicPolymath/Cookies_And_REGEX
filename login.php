@@ -14,15 +14,6 @@ if (isset($_SESSION['errorResponse'])) {
     $errorResponse = $_SESSION['errorResponse'];
 }
 
-#Check for set SESSION COOKIES
-if (isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
-    $userName = $_SESSION['cookieUname'];
-    $passWord = $_SESSION['cookiePass'];
-} else {
-    $userName = null;
-    $passWord = null;
-}
-
 #This is the code to get it working w/ cookies but it would not work
 #Check for set COOKIES
 if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
@@ -33,14 +24,14 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
     $passWord = null;
 }
 
-
-
-//print_r($_SESSION);
-//print_r($_SESSION['cookieUname']);
-//print_r($_SESSION['cookiePass']);
-//print_r($_COOKIE['userName']);
-//print_r($_COOKIE['passWord']);
-
+//#Check for set SESSION COOKIES
+//if (isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
+//    $userName = $_SESSION['cookieUname'];
+//    $passWord = $_SESSION['cookiePass'];
+//} else {
+//    $userName = null;
+//    $passWord = null;
+//}
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,8 +41,6 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
 </head>
 
 <body>
-
-<pre><?php print_r($_COOKIE); ?> </pre>
 
 <h2>Login Form</h2>
 
@@ -83,9 +72,7 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
         <button type="submit">Login</button>
         <!-- This uses one line if statement to check if checkbox is checked and if it is keep it checked and if not keep it unchecked -->
         <!-- By default it will Remember me will be checked, but if user unchecks / checks upon submitting it will remember the users choice. -->
-        <input type="checkbox"
-               name="checkboxRemember" <?= (isset($_POST['checkboxRemember'])) ? "checked='checked'" : (!(isset($_POST['checkboxRemember']))) ? " " : ($_POST['checkboxRemember'] == null) ? "checked='checked'" : " "; ?> >
-        Remember me
+        <input type="checkbox" name="checkboxRemember" <?= (isset($_POST['checkboxRemember'])) ? "checked='checked'" : (!(isset($_POST['checkboxRemember']))) ? " " :  " "; ?> > Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
