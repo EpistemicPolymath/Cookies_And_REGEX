@@ -14,6 +14,14 @@ if (isset($_SESSION['errorResponse'])) {
     $errorResponse = $_SESSION['errorResponse'];
 }
 
+#Check for set COOKIES
+if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
+    $userName = $_COOKIE['userName'];
+    $passWord = $_COOKIE['passWord'];
+} else {
+    $userName = null;
+    $passWord = null;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,13 +54,13 @@ if (isset($_SESSION['errorResponse'])) {
 
     <div class="container">
         <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" required>
+        <input type="text" placeholder="Enter Username" name="username" value="<?=$userName?>" required>
 
         <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="pass" required>
+        <input type="password" placeholder="Enter Password" name="pass" value="<?=$passWord ?>" required>
 
         <button type="submit">Login</button>
-        <input type="checkbox" name="checkbox" checked="checked"> Remember me
+        <input type="checkbox" name="checkboxRemember" checked="checked"<?=(isset($_POST['checkBoxRemember']) ? 'checked' :' ') ?> > Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

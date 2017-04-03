@@ -16,6 +16,21 @@ require_once('../db_error/database.php');
 $username = $_POST['username'];
 $password = $_POST['pass'];
 
+#Get checkboxRemember
+
+if(isset($_POST['checkboxRemember'])){
+
+#Set Cookies for Username and Password
+    setcookie('userName' , $username , time()- 2000 , '/' ) ;
+    setcookie('passWord' , $password , time()- 2000 , '/' ) ;
+
+}else{
+
+    setcookie("userName", "", time() - 3600);
+    setcookie("passWord", "", time() - 3600);
+
+}
+
 //Users Table Query
 #Select all users from users table that have the same username and password as the login
 $usersSelectQuery = $db->prepare("SELECT * FROM users
