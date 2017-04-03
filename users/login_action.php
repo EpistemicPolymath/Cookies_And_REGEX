@@ -18,13 +18,13 @@ $password = $_POST['pass'];
 
 #Get checkboxRemember
 
-if(isset($_POST['checkboxRemember'])){
+if (isset($_POST['checkboxRemember'])) {
 
 #Set Cookies for Username and Password
-    setcookie('userName' , $username , time()- 2000 , '/' ) ;
-    setcookie('passWord' , $password , time()- 2000 , '/' ) ;
+    setcookie('userName', $username, time() - 2000, '/');
+    setcookie('passWord', $password, time() - 2000, '/');
 
-}else{
+} else {
 
     setcookie("userName", "", time() - 3600);
     setcookie("passWord", "", time() - 3600);
@@ -56,11 +56,11 @@ if ($userSelect > 0) {
 
 
 # Now we need an if statement to check role and determine which homepage to send them to
-    if($userSelect['role'] == 'manager'){
+    if ($userSelect['role'] == 'manager') {
         header("Location:../manager_driver/index.php");
-    } elseif($userSelect['role'] == 'student'){
-        header("Location:../student_driver/student_home.php?departmentID=". $deptID);
-    }else{
+    } elseif ($userSelect['role'] == 'student') {
+        header("Location:../student_driver/student_home.php?departmentID=" . $deptID);
+    } else {
         //header("Location:../login.php");
         $errorResponse = "User has unrecognized role.";
     }
@@ -72,7 +72,7 @@ if ($userSelect > 0) {
 #In above IF statement two different types of error messages can be set.
 #We can create a session to create and store the error message for usage
 #First we must check to see if an error message was created/set
-if(isset($errorResponse)){
+if (isset($errorResponse)) {
 
     #If it is set we create the Session variable
     $_SESSION['errorResponse'] = $errorResponse;

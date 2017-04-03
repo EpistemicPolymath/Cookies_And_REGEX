@@ -22,6 +22,11 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
     $userName = null;
     $passWord = null;
 }
+
+print_r($_COOKIE);
+print_r($_COOKIE['userName']);
+print_r($_COOKIE['passWord']);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -60,7 +65,7 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
         <input type="password" placeholder="Enter Password" name="pass" value="<?=$passWord ?>" required>
 
         <button type="submit">Login</button>
-        <input type="checkbox" name="checkboxRemember" checked="checked"<?=(isset($_POST['checkBoxRemember']) ? 'checked' :' ') ?> > Remember me
+        <input type="checkbox" name="checkboxRemember" checked="checked"> Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
