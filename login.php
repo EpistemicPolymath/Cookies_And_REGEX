@@ -78,7 +78,7 @@ if(isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
 
         <button type="submit">Login</button>
         <!-- This uses one line if statement to check if checkbox is checked and if it is keep it checked and if not keep it unchecked -->
-        <input type="checkbox" name="checkboxRemember" <?=(isset($_POST['checkboxRemember'])) ?  "checked='checked'" : ' '; ?> > Remember me
+        <input type="checkbox" name="checkboxRemember" <?=(isset($_POST['checkboxRemember'])) ?  "checked='checked'" : (!(isset($_POST['checkboxRemember']))) ? " " : ($_POST['checkboxRemember'] == null) ? "checked='checked'" : " "; ?> > Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
