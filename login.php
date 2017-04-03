@@ -57,7 +57,9 @@ if (isset($_SESSION['errorResponse'])) {
 
     <div class="container" style="background-color:#f1f1f1">
         <button type="button" class="cancelbtn">Cancel</button>
-        <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+      <span class="psw">Forgot <a href="#">password?</a></span>
+        <br/>
+        <span class="register"><a href="/users/user_signup_form.php">New User?</a></span>
     </div>
 </form>
 
