@@ -12,5 +12,9 @@ unset($_SESSION['firstName']);
 unset($_SESSION['userRole']);
 unset($_SESSION['userID']);
 unset($_SESSION['deptID']);
-session_destroy() ;
+//session_destroy() ;
+/*
+Had to comment out session_destroy(); so when the user logs out it can
+still save whether or not they
+*/
 header("Location:../login.php");

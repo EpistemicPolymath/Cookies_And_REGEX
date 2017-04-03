@@ -14,18 +14,30 @@ if (isset($_SESSION['errorResponse'])) {
     $errorResponse = $_SESSION['errorResponse'];
 }
 
-#Check for set COOKIES
-if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
-    $userName = $_COOKIE['userName'];
-    $passWord = $_COOKIE['passWord'];
+#Check for set SESSION COOKIES
+if(isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
+    $userName = $_SESSION['cookieUname'];
+    $passWord = $_SESSION['cookiePass'];
 } else {
     $userName = null;
     $passWord = null;
 }
 
-print_r($_COOKIE);
-print_r($_COOKIE['userName']);
-print_r($_COOKIE['passWord']);
+#This is the code to get it working w/ cookies but it would not work
+//#Check for set COOKIES
+//if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
+//    $userName = $_COOKIE['userName'];
+//    $passWord = $_COOKIE['passWord'];
+//} else {
+//    $userName = null;
+//    $passWord = null;
+//}
+
+//print_r($_COOKIE);
+//print_r($_SESSION['cookieUname']);
+//print_r($_SESSION['cookiePass']);
+//print_r($_COOKIE['userName']);
+//print_r($_COOKIE['passWord']);
 
 ?>
 <!DOCTYPE html>
@@ -65,7 +77,8 @@ print_r($_COOKIE['passWord']);
         <input type="password" placeholder="Enter Password" name="pass" value="<?=$passWord ?>" required>
 
         <button type="submit">Login</button>
-        <input type="checkbox" name="checkboxRemember" checked="checked"> Remember me
+        <!-- This uses one line if statement to check if checkbox is checked and if it is keep it checked and if not keep it unchecked -->
+        <input type="checkbox" name="checkboxRemember" <?=(isset($_POST['checkboxRemember'])) ?  "checked='checked'" : ' '; ?> > Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

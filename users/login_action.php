@@ -23,13 +23,30 @@ if (isset($_POST['checkboxRemember'])) {
 #Set Cookies for Username and Password
     setcookie('userName', $username, time() - 2000, '/');
     setcookie('passWord', $password, time() - 2000, '/');
+    #Cookies were not working so I used sessions instead
+    $_SESSION['cookieUname'] = $username;
+    $_SESSION['cookiePass'] = $password;
 
 } else {
 
     setcookie("userName", "", time() - 3600);
     setcookie("passWord", "", time() - 3600);
-
+    #Cookies were not working so I used sessions instead
+    unset($_SESSION['cookieUname']);
+    unset($_SESSION['cookiePass']);
 }
+
+//if (isset($_POST['checkboxRemember'])){
+//
+//   $checked = 'checked';
+//
+//
+//}else {
+//
+//    $checked = ' ';
+//}
+//
+//$_SESSION['checkboxRemember'] = $checked;
 
 //Users Table Query
 #Select all users from users table that have the same username and password as the login
