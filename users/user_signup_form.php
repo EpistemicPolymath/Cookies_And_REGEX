@@ -39,19 +39,20 @@ $queryAllDepartments->closecursor();
                 case 1: ?>
                     <!-- Error 1 -->
                     <div class="error">
-                        Username already used, please use another username.
+                        Username should contain 4-10 alphanumeric characters.
                     </div>
                     <?php break;
                 case 2: ?>
                     <!-- Error 2 -->
                     <div class="error">
-                        Username should contain 4-10 alphanumeric characters.
+                        Username already used, please use another username.
                     </div>
                     <?php break;
                 case 3: ?>
                     <!-- Error 3 -->
                     <div class="error">
-                        Should be at least 8 characters, 1 upper case letter [A-Z], one special character !,#,@.
+                        Password should be at least 8 characters, 1 upper case letter [A-Z], one special character
+                        !,#,@.
                     </div>
                     <?php break;
                 case 4: ?>
@@ -146,12 +147,12 @@ $queryAllDepartments->closecursor();
                         <input type="radio" name="role" value="Manager"> Manager<br>
                     </p>
                     <p>
-                            <label for="dept">Department</label><br>
-                            <select id="dept" name="dept">
-                                <?php foreach ($departments as $department) : ?>
+                        <label for="dept">Department</label><br>
+                        <select id="dept" name="dept">
+                            <?php foreach ($departments as $department) : ?>
                                 <option value="<?= $department['departmentID'] ?>"><?= $department['departmentName'] ?></option>
-                                <?php endforeach; ?>
-                            </select>
+                            <?php endforeach; ?>
+                        </select>
                     </p>
 
                     <p>
