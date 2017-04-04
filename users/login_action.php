@@ -26,6 +26,7 @@ if (isset($_POST['checkboxRemember'])) {
 #Set Cookies for Username and Password
     setcookie('userName', $username, $expire, '/');
     setcookie('passWord', $password, $expire, '/');
+    setcookie('checked', 1, $expire, '/');
     #Session Setup setting Session Variables
     // $_SESSION['cookieUname'] = $username;
     // $_SESSION['cookiePass'] = $password;
@@ -36,8 +37,10 @@ if (isset($_POST['checkboxRemember'])) {
 
         unset($_COOKIE['userName']);
         unset($_COOKIE['passWord']);
+        unset($_COOKIE['checked']);
         setcookie("userName", ' ', time() - 3600, '/');
         setcookie("passWord", ' ', time() - 3600, '/');
+        setcookie("checked", ' ', time() - 3600, '/');
         #Session UnSet
 //    unset($_SESSION['cookieUname']);
 //    unset($_SESSION['cookiePass']);

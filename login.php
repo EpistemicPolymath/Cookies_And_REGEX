@@ -24,6 +24,18 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
     $passWord = null;
 }
 
+#Cookie that determines if in the last POST if Remember Me was checked or not
+if(isset($_COOKIE['checked'])){
+    #IF checked value set = 1
+    $checked = 1;
+
+
+}else {
+    #If not checked value set to null
+    $checked = null;
+
+}
+
 //#Check for set SESSION COOKIES
 //if (isset($_SESSION["cookieUname"]) && (isset($_SESSION['cookiePass']))) {
 //    $userName = $_SESSION['cookieUname'];
@@ -72,7 +84,7 @@ if(isset($_COOKIE["userName"]) && (isset($_COOKIE['passWord']))) {
         <button type="submit">Login</button>
         <!-- This uses one line if statement to check if checkbox is checked and if it is keep it checked and if not keep it unchecked -->
         <!-- By default it will Remember me will be checked, but if user unchecks / checks upon submitting it will remember the users choice. -->
-        <input type="checkbox" name="checkboxRemember" <?= (isset($_POST['checkboxRemember'])) ? "checked='checked'" : (!(isset($_POST['checkboxRemember']))) ? " " :  " "; ?> > Remember me
+        <input type="checkbox" name="checkboxRemember" <?=(array_key_exists('checkboxRemember',$_POST) || $checked == 1) ? "checked='checked'" : " "; ?> > Remember me
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
