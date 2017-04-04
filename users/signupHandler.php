@@ -49,6 +49,15 @@ elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $pa
 }
 /*
  This elseif should if password matches the following:
+(a) Matches ConfirmPassword
+*/
+elseif (!($password == $confirmPassword))) {
+
+    $err = 4;
+
+}
+/*
+ This elseif should if firstname & lastname matches the following:
 (a) Only composed of characters [a-z] or [A-Z].
 */
 elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
@@ -56,6 +65,15 @@ elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
     $err = 4;
 
 }
+/*
+(a) First part can contain alphanumeric characters [a-z], [A-Z],
+[0-9], ‘.’, ‘-’, and ‘_’
+(b) Should include ‘@’
+(c) After the ‘@’ can contain alphanumeric characters [a-z], [A-Z],
+[0-9], ‘.’
+(d) The last part should contain domains from com or edu or net.
+*/
+//// Still have to work on email regex
 elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail))) {
 
     $err = 4;
