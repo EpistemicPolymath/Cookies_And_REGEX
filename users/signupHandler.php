@@ -51,20 +51,12 @@ elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $pa
  This elseif should if password matches the following:
 (a) Matches ConfirmPassword
 */
-elseif (!($password == $confirmPassword))) {
+elseif (!($password == $confirmPassword)) {
 
     $err = 4;
 
 }
-/*
- This elseif should if firstname & lastname matches the following:
-(a) Only composed of characters [a-z] or [A-Z].
-*/
-elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
 
-    $err = 4;
-
-}
 /*
 (a) First part can contain alphanumeric characters [a-z], [A-Z],
 [0-9], ‘.’, ‘-’, and ‘_’
@@ -76,10 +68,9 @@ elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
 //// Still have to work on email regex
 elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail))) {
 
-    $err = 4;
+    $err = 8;
 
 }
-
 
 #This is error 9 you need to keep going in order from the errors
 #in user_signup_form.php checking everything that is required in the PDF for HW6
@@ -88,7 +79,16 @@ elseif(!isset($userAgreement))
 
     $error = 9;
 
-} #Error=10 Will go below this elseif {}
+}
+/*
+ This elseif should if firstname & lastname matches the following:
+(a) Only composed of characters [a-z] or [A-Z].
+*/
+elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
+
+    $err = 10;
+
+}
 
 #Depending on the result of the error if it is != 0 then go back and set GET error variable
 if($error != 0){
