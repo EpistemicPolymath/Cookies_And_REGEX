@@ -20,36 +20,98 @@
         <br/>
     </div>
     <div class="span-18">
-        <div class="error" style="display: none">
-            Username already used, please use another username.
-        </div>
-        <div class="error" style="display: none">
-            Username should contain 4-10 alphanumeric characters.
-        </div>
-        <div class="error">
-            Should be at least 8 characters, 1 upper case letter [A-Z], one special character !,#,@.
-        </div>
-        <div class="error" style="display: none">
-            Password and confirm password should match.
-        </div>
-        <div class="error" style="display: none">
-            Age should be a number.
-        </div>
-        <div class="error" style="display: none">
-            Please select a gender.
-        </div>
-        <div class="error" style="display: none">
-            Please select a role.
-        </div>
-        <div class="error" style="display: none">
-            Please enter the correct email format.
-        </div>
-        <div class="error" style="display: none">
-            Please accept the terms.
-        </div>
-        <div class="error" style="display: none">
-            Firstname and Lastname should only contain characters [A-Z] or [a-z]
-        </div>
+
+        <?php
+
+        if (isset($_GET["error"])) : ?>
+
+
+            <?php switch ($_GET['error']) : ?>
+
+
+            <?php case 1: ?>
+
+                    <!-- Error 1 -->
+                    <div class="error">
+                        Username already used, please use another username.
+                    </div>
+
+                    <?php break; ?>
+
+            <?php case 2: ?>
+
+                    <!-- Error 2 -->
+                    <div class="error" style="display: none">
+                        Username should contain 4-10 alphanumeric characters.
+                    </div>
+              <?php break; ?>
+
+                    <?php case 3: ?>
+
+                    <!-- Error 3 -->
+                    <div class="error">
+                        Should be at least 8 characters, 1 upper case letter [A-Z], one special character !,#,@.
+                    </div>
+              <?php break; ?>
+
+                    <?php case 4: ?>
+
+
+                    <!-- Error 4 -->
+                    <div class="error" style="display: none">
+                        Password and confirm password should match.
+                    </div>
+                                  <?php break; ?>
+
+                    <?php case 5; ?>
+
+                    <!-- Error 5 -->
+                    <div class="error" style="display: none">
+                        Age should be a number.
+                    </div>
+
+                  <?php break; ?>
+
+                    <?php case 6: ?>
+
+                    <!-- Error 6 -->
+                    <div class="error" style="display: none">
+                        Please select a gender.
+                    </div>
+
+                                  <?php break ?>
+
+                    <?php case 7: ?>
+
+                    <!-- Error 7 -->
+                    <div class="error" style="display: none">
+                        Please select a role.
+                    </div>
+                                  <?php break; ?>
+
+                    <?php case 8: ?>
+
+                    <!-- Error 8 -->
+                    <div class="error" style="display: none">
+                        Please enter the correct email format.
+                    </div>
+                                  <?php case 9: ?>
+                    <!-- Error 9 -->
+                    <div class="error" style="display: none">
+                        Please accept the terms.
+                    </div>
+                                                <?php break; ?>
+
+                    <?php case 10: ?>
+
+                    <!-- Error 10 -->
+                    <div class="error" style="display: none">
+                        Firstname and Lastname should only contain characters [A-Z] or [a-z]
+                    </div>
+                                   <?php break; ?>
+
+                <?php endswitch; endif; ?>
+
         <form id="dummy" action="signupHandler.php" method="post" class="inline">
             <fieldset>
                 <div class="span-9">
