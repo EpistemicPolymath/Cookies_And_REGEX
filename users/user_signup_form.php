@@ -1,3 +1,16 @@
+<?php
+
+require_once("../db_error/database.php");
+#Populate All Department Names
+
+$queryAllDepartments = $db->prepare("SELECT * 
+                        FROM department");
+$queryAllDepartments->execute();
+$departments = $queryAllDepartments->fetchall();
+$queryAllDepartments->closecursor();
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
         "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -47,7 +60,7 @@
                         Password and confirm password should match.
                     </div>
                     <?php break;
-                case 5; ?>
+                case 5: ?>
                     <!-- Error 5 -->
                     <div class="error">
                         Age should be a number.
@@ -59,31 +72,31 @@
                         Please select a gender.
                     </div>
                     <?php break;
-                     case 7: ?>
-                         <!-- Error 7 -->
-                         <div class="error">
-                             Please select a role.
-                         </div>
-                         <?php break;
-                    case 8: ?>
-                        <!-- Error 8 -->
-                        <div class="error">
-                            Please enter the correct email format.
-                        </div>
-                        <?php break;
-                                   case 9: ?>
-                                       <!-- Error 9 -->
-                                       <div class="error">
-                                           Please accept the terms.
-                                       </div>
-                                       <?php break;
-                     case 10: ?>
-                         <!-- Error 10 -->
-                         <div class="error">
-                             Firstname and Lastname should only contain characters [A-Z] or [a-z]
-                         </div>
-                         <?php break; ?>
-                     <?php } endif; ?>
+                case 7: ?>
+                    <!-- Error 7 -->
+                    <div class="error">
+                        Please select a role.
+                    </div>
+                    <?php break;
+                case 8: ?>
+                    <!-- Error 8 -->
+                    <div class="error">
+                        Please enter the correct email format.
+                    </div>
+                    <?php break;
+                case 9: ?>
+                    <!-- Error 9 -->
+                    <div class="error">
+                        Please accept the terms.
+                    </div>
+                    <?php break;
+                case 10: ?>
+                    <!-- Error 10 -->
+                    <div class="error">
+                        Firstname and Lastname should only contain characters [A-Z] or [a-z]
+                    </div>
+                    <?php break; ?>
+                <?php } endif; ?>
 
         <form id="dummy" action="signupHandler.php" method="post" class="inline">
             <fieldset>
@@ -123,22 +136,22 @@
 
                     <p>
                         <label>Gender</label><br>
-                        <input type="radio" name="gender" value="male"> Male
-                        <input type="radio" name="gender" value="female"> Female<br>
+                        <input type="radio" name="gender" value="Male"> Male
+                        <input type="radio" name="gender" value="Female"> Female
+                        <input type="radio" name="gender" value="Other"> Other<br>
                     </p>
                     <p>
                         <label>Role</label><br>
-                        <input type="radio" name="gender" value="male"> Student
-                        <input type="radio" name="gender" value="female"> Manager<br>
+                        <input type="radio" name="role" value="Student"> Student
+                        <input type="radio" name="role" value="Manager"> Manager<br>
                     </p>
                     <p>
-                        <label for="dept">Department</label><br>
-                        <select id="dept" name="dept">
-                            <option value="SIS">Engineering</option>
-                            <option value="CS">CS</option>
-                            <option value="BIO">BIO</option>
-                            <option value="MIS">MIS</option>
-                        </select>
+                            <label for="dept">Department</label><br>
+                            <select id="dept" name="dept">
+                                <?php foreach ($departments as $department) : ?>
+                                <option value="<?= $department['departmentID'] ?>"><?= $department['departmentName'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
                     </p>
 
                     <p>
