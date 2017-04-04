@@ -9,7 +9,7 @@
 
     $dsn = 'mysql:host=localhost;dbname=university_schema';
     $username = 'root';
-    $password = '';
+    $password = 'password';
 
     try {
         $db = new PDO($dsn, $username, $password);
