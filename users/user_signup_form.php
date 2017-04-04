@@ -21,96 +21,69 @@
     </div>
     <div class="span-18">
 
-        <?php
-
-        if (isset($_GET["error"])) : ?>
-
-
-            <?php switch ($_GET['error']) : ?>
-
-
-            <?php case 1: ?>
-
+        <?php if (isset($_GET["error"])) : ?>
+            <?php switch ($_GET['error']) {
+                case 1: ?>
                     <!-- Error 1 -->
                     <div class="error">
                         Username already used, please use another username.
                     </div>
-
-                    <?php break; ?>
-
-            <?php case 2: ?>
-
+                    <?php break;
+                case 2: ?>
                     <!-- Error 2 -->
-                    <div class="error" style="display: none">
+                    <div class="error">
                         Username should contain 4-10 alphanumeric characters.
                     </div>
-              <?php break; ?>
-
-                    <?php case 3: ?>
-
+                    <?php break;
+                case 3: ?>
                     <!-- Error 3 -->
                     <div class="error">
                         Should be at least 8 characters, 1 upper case letter [A-Z], one special character !,#,@.
                     </div>
-              <?php break; ?>
-
-                    <?php case 4: ?>
-
-
+                    <?php break;
+                case 4: ?>
                     <!-- Error 4 -->
-                    <div class="error" style="display: none">
+                    <div class="error">
                         Password and confirm password should match.
                     </div>
-                                  <?php break; ?>
-
-                    <?php case 5; ?>
-
+                    <?php break;
+                case 5; ?>
                     <!-- Error 5 -->
-                    <div class="error" style="display: none">
+                    <div class="error">
                         Age should be a number.
                     </div>
-
-                  <?php break; ?>
-
-                    <?php case 6: ?>
-
+                    <?php break;
+                case 6: ?>
                     <!-- Error 6 -->
-                    <div class="error" style="display: none">
+                    <div class="error">
                         Please select a gender.
                     </div>
-
-                                  <?php break ?>
-
-                    <?php case 7: ?>
-
-                    <!-- Error 7 -->
-                    <div class="error" style="display: none">
-                        Please select a role.
-                    </div>
-                                  <?php break; ?>
-
-                    <?php case 8: ?>
-
-                    <!-- Error 8 -->
-                    <div class="error" style="display: none">
-                        Please enter the correct email format.
-                    </div>
-                                  <?php case 9: ?>
-                    <!-- Error 9 -->
-                    <div class="error" style="display: none">
-                        Please accept the terms.
-                    </div>
-                                                <?php break; ?>
-
-                    <?php case 10: ?>
-
-                    <!-- Error 10 -->
-                    <div class="error" style="display: none">
-                        Firstname and Lastname should only contain characters [A-Z] or [a-z]
-                    </div>
-                                   <?php break; ?>
-
-                <?php endswitch; endif; ?>
+                    <?php break;
+                     case 7: ?>
+                         <!-- Error 7 -->
+                         <div class="error">
+                             Please select a role.
+                         </div>
+                         <?php break;
+                    case 8: ?>
+                        <!-- Error 8 -->
+                        <div class="error">
+                            Please enter the correct email format.
+                        </div>
+                        <?php break;
+                                   case 9: ?>
+                                       <!-- Error 9 -->
+                                       <div class="error">
+                                           Please accept the terms.
+                                       </div>
+                                       <?php break;
+                     case 10: ?>
+                         <!-- Error 10 -->
+                         <div class="error">
+                             Firstname and Lastname should only contain characters [A-Z] or [a-z]
+                         </div>
+                         <?php break; ?>
+                     <?php } endif; ?>
 
         <form id="dummy" action="signupHandler.php" method="post" class="inline">
             <fieldset>
