@@ -3,7 +3,7 @@ include('../db_error/database.php');
 
 #All elements from form brought over using POST
 $username = filter_input(INPUT_POST, "username");
-$password = filter_input(INPUT_POST, "pasword");
+$password = filter_input(INPUT_POST, "password");
 $confirmPassword = filter_input(INPUT_POST, "confirmpassword");
 $firstname = filter_input(INPUT_POST, "firstname");
 $lastname = filter_input(INPUT_POST, "lastname");
@@ -12,6 +12,7 @@ $userGender = filter_input(INPUT_POST, "gender");
 $userRole = filter_input(INPUT_POST, "role");
 $userDept = filter_input(INPUT_POST, "dept");
 $userAgreement = filter_input(INPUT_POST, "accepted");
+
 
 # Get all usernames currently in the database
 $queryUsersUsernames = $db->prepare("SELECT username
@@ -52,7 +53,7 @@ if(!(preg_match('/^[a-zA-Z0-9]{4,10}$/', $username)  === 1)) {
 
 */
 
-elseif (!(preg_match('/(?=.{8,})(?=.*[A-Z])(?=.*[!#@])(?=.*\d)(.*[a-z0-9])$/', $password) === 1)) {
+elseif (!(preg_match('/(?=.{8,})(?=.*[A-Z])(?=.*[!#@])(?=.*\d)(.*[a-z0-9])/', $password) === 1)) {
 
     $error = 3;
 
@@ -97,7 +98,7 @@ elseif ($userRole != 'Student' || 'Manager') {
 (d) The last part should contain domains from com or edu or net.
 */
 //// Still have to work on email regex
-elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail))) {
+elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail)) === 1) {
 
     $error = 7;
 
@@ -115,7 +116,7 @@ elseif($userAgreement != 'accepted')
  This elseif should if firstname & lastname matches the following:
 (a) Only composed of characters [a-z] or [A-Z].
 */
-elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
+elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname)) === 1) {
 
     $error = 9;
 
