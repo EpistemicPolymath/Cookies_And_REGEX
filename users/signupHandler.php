@@ -13,6 +13,12 @@ $userRole = filter_input(INPUT_POST, "role");
 $userDept = filter_input(INPUT_POST, "dept");
 $userAgreement = filter_input(INPUT_POST, "accepted");
 
+print_r($userDept);
+print_r($userRole);
+print_r($userGender);
+print_r($firstname);
+print_r($lastname);
+print_r($userEmail);
 
 # Get all usernames currently in the database
 $queryUsersUsernames = $db->prepare("SELECT username
@@ -30,6 +36,7 @@ $error = 0;
 if(!(preg_match('/^[a-zA-Z0-9]{4,10}$/', $username)  === 1)) {
 
     $error = 1;
+    header("Location:user_signup_form.php?error=" . $error);
 
 
 } # This elseif should should use foreach to compare $allUsernames with the users $username elseif(){}
@@ -56,7 +63,7 @@ if(!(preg_match('/^[a-zA-Z0-9]{4,10}$/', $username)  === 1)) {
 elseif (!(preg_match('/(?=.{8,})(?=.*[A-Z])(?=.*[!#@])(?=.*\d)(.*[a-z0-9])/', $password) === 1)) {
 
     $error = 3;
-
+    header("Location:user_signup_form.php?error=" . $error);
 }
 /*
  This elseif should if password matches the following:
@@ -65,6 +72,7 @@ elseif (!(preg_match('/(?=.{8,})(?=.*[A-Z])(?=.*[!#@])(?=.*\d)(.*[a-z0-9])/', $p
 elseif (!($password == $confirmPassword)) {
 
     $error = 4;
+    header("Location:user_signup_form.php?error=" . $error);
 
 }
 
@@ -73,9 +81,10 @@ elseif (!($password == $confirmPassword)) {
  This elseif should if Gender matches the following:
 (a) Male || Female || Other
 */
-elseif ($userGender != 'Male' || 'Female' || 'Other') {
+elseif ((!isset($userGender)) && ($userGender != 'Male' || 'Female' || 'Other')) {
 
     $error = 5;
+    header("Location:user_signup_form.php?error=" . $error);
 
 }
 
@@ -83,9 +92,10 @@ elseif ($userGender != 'Male' || 'Female' || 'Other') {
  This elseif should if Role matches the following:
 (a) Student || Manager
 */
-elseif ($userRole != 'Student' || 'Manager') {
+elseif ( (!isset($userRole)) && ($userRole != 'Student' || 'Manager')) {
 
     $error = 6;
+    header("Location:user_signup_form.php?error=" . $error);
 
 }
 
@@ -98,41 +108,36 @@ elseif ($userRole != 'Student' || 'Manager') {
 (d) The last part should contain domains from com or edu or net.
 */
 //// Still have to work on email regex
-elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail)) === 1) {
+elseif (!(preg_match('/^[a-zA-Z0-9_\-.]+@[a-zA-Z0-9\-]+\.[com|edu|net]{3}$/', $userEmail) === 1)) {
 
     $error = 7;
+    header("Location:user_signup_form.php?error=" . $error);
 
 }
 
 #This is error 9 you need to keep going in order from the errors
 #in user_signup_form.php checking everything that is required in the PDF for HW6
-elseif($userAgreement != 'accepted')
+elseif( (!isset($userAgreement)) && ($userAgreement != 'accepted'))
 {
 
     $error = 8;
+    header("Location:user_signup_form.php?error=" . $error);
 
 }
 /*
  This elseif should if firstname & lastname matches the following:
 (a) Only composed of characters [a-z] or [A-Z].
 */
-elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname)) === 1) {
+elseif (!(preg_match("/^[a-zA-Z]+$/", $firstname . $lastname) === 1)) {
 
     $error = 9;
-
-}
-
-#Depending on the result of the error if it is != 0 then go back and set GET error variable
-if($error != 0){
-
     header("Location:user_signup_form.php?error=" . $error);
 
-} else {
-
-    #This is where we can put the code to insert the user information into the database.
-    #Will confirm this later.
-
 }
+
+#This is where we can put the code to insert the user information into the database.
+#Will confirm this later.
+
 
 ?>
 
