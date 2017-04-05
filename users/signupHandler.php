@@ -51,7 +51,7 @@ if(!(preg_match([], $username))) {
 
 elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $password))) {
 
-    $err = 3;
+    $error = 3;
 
 }
 /*
@@ -60,7 +60,7 @@ elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $pa
 */
 elseif (!($password == $confirmPassword)) {
 
-    $err = 4;
+    $error = 4;
 
 }
 
@@ -71,7 +71,7 @@ elseif (!($password == $confirmPassword)) {
 */
 elseif ($userGender != 'Male' || 'Female' || 'Other') {
 
-    $err = 6;
+    $error = 5;
 
 }
 
@@ -81,7 +81,7 @@ elseif ($userGender != 'Male' || 'Female' || 'Other') {
 */
 elseif ($userRole != 'Student' || 'Manager') {
 
-    $err = 7;
+    $error = 6;
 
 }
 
@@ -96,7 +96,7 @@ elseif ($userRole != 'Student' || 'Manager') {
 //// Still have to work on email regex
 elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail))) {
 
-    $err = 7;
+    $error = 7;
 
 }
 
@@ -114,7 +114,7 @@ elseif($userAgreement != 'accepted')
 */
 elseif (!(preg_match("/[a-zA-Z]+/", $firstname . $lastname))) {
 
-    $err = 9;
+    $error = 9;
 
 }
 
@@ -129,7 +129,6 @@ if($error != 0){
     #Will confirm this later.
 
 }
-
 
 ?>
 
