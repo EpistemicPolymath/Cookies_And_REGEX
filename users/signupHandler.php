@@ -48,6 +48,7 @@ if(!(preg_match([], $username))) {
 (c) Should have one character from !,#,@.
 (d) All remaining characters can be [a-z] or [0-9].
 */
+
 elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $password))) {
 
     $err = 3;
