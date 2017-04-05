@@ -43,13 +43,16 @@ if(!(preg_match("/[a-zA-Z0-9]{4,10}/", $username))) {
 
 /*
  This elseif should if password matches the following:
-(a) At least 8 characters.
-(b) Should have one upper case letter [A-Z]
-(c) Should have one character from !,#,@.
-(d) All remaining characters can be [a-z] or [0-9].
+(a) At least 8 characters. (?=.{8,})
+(b) Should have one upper case letter [A-Z] (?=.*[A-Z])
+(c) Should have one character from !,#,@. (?=.*?[#!@])
+(d) All remaining characters can be [a-z] or [0-9]. [a-z][0-9]
+
+(?=.*\d) - Checks for at least 1 digit
+
 */
 
-elseif (!(preg_match("/(?=.*?[#!@])(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/", $password))) {
+elseif (!(preg_match("/(?=.{8,})(?=.*[A-Z])(?=.*[!#@])(?=.*\d)(.*[a-z0-9])/", $password))) {
 
     $error = 3;
 

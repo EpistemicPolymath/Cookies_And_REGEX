@@ -51,7 +51,7 @@ $queryAllDepartments->closecursor();
                 case 3: ?>
                     <!-- Error 3 -->
                     <div class="error">
-                        Password should be at least 8 characters, 1 upper case letter [A-Z], one special character
+                        Password should be at least 8 characters, 1 upper case letter [A-Z], 1 digit [0-9], and one special character
                         !,#,@.
                     </div>
                     <?php break;
