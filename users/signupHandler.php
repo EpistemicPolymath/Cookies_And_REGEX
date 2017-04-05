@@ -26,7 +26,7 @@ $error = 0;
 #First IF should if username contains 4-10 alphanumeric characters I copied this one from In Class 8
 #I switched error=1 and error=2 because it makes more sense to check if username is correct before
 #comparing it to the other usernames in the database
-if(!(preg_match("/[a-zA-Z0-9]{4,10}/", $username))) {
+if(!(preg_match('/^[a-zA-Z0-9]{4,10}$/', $username))) {
 
     $error = 1;
 
