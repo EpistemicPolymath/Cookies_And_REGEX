@@ -62,36 +62,30 @@ $queryAllDepartments->closecursor();
                     </div>
                     <?php break;
                 case 5: ?>
-                    <!-- Error 5 -->
-                    <div class="error">
-                        Age should be a number.
-                    </div>
-                    <?php break;
-                case 6: ?>
                     <!-- Error 6 -->
                     <div class="error">
                         Please select a gender.
                     </div>
                     <?php break;
-                case 7: ?>
+                case 6: ?>
                     <!-- Error 7 -->
                     <div class="error">
                         Please select a role.
                     </div>
                     <?php break;
-                case 8: ?>
+                case 7: ?>
                     <!-- Error 8 -->
                     <div class="error">
                         Please enter the correct email format.
                     </div>
                     <?php break;
-                case 9: ?>
+                case 8: ?>
                     <!-- Error 9 -->
                     <div class="error">
                         Please accept the terms.
                     </div>
                     <?php break;
-                case 10: ?>
+                case 9: ?>
                     <!-- Error 10 -->
                     <div class="error">
                         Firstname and Lastname should only contain characters [A-Z] or [a-z]
