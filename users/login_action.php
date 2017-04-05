@@ -88,9 +88,9 @@ if ($userSelect > 0) {
 
 # Now we need an if statement to check role and determine which homepage to send them to
     if ($userSelect['role'] == 'manager') {
-        header("Location:../manager_driver/index.php");
+        header("Location:../manager_driver/index.php?department_id=" . $deptID);
     } elseif ($userSelect['role'] == 'student') {
-        header("Location:../student_driver/student_home.php?departmentID=" . $deptID);
+        header("Location:../student_driver/student_home.php");
     } else {
         //header("Location:../login.php");
         $errorResponse = "User has unrecognized role.";

@@ -151,18 +151,18 @@ elseif (!(preg_match("/^[a-zA-Z]+$/", $firstname . $lastname) === 1)) {
 
 #This is where we can put the code to insert the user information into the database.
 
-//$queryInsertIntoUsers = $db->prepare("INSERT INTO users (userName, email, password, firstName, lastName, role, deptID, gender)
-//                                     VALUES (:userName, :email, :password, :firstname, :lastname, :role, :deptID, :gender)");
-//$queryInsertIntoUsers->execute(array(
-//        ":userName" => $username,
-//        ":email" => $userEmail,
-//        ":password" => $password,
-//        ":firstname" => $firstname,
-//        ":lastname" => $lastname,
-//        ":role" => $userRole,
-//        ":deptID" => $userDept,
-//        ":gender" => $userGender
-//));
+$queryInsertIntoUsers = $db->prepare("INSERT INTO users (userName, email, password, firstName, lastName, role, deptID, gender)
+                                     VALUES (:userName, :email, :password, :firstname, :lastname, :role, :deptID, :gender)");
+$queryInsertIntoUsers->execute(array(
+        ":userName" => $username,
+        ":email" => $userEmail,
+        ":password" => $password,
+        ":firstname" => $firstname,
+        ":lastname" => $lastname,
+        ":role" => $userRole,
+        ":deptID" => $userDept,
+        ":gender" => $userGender
+));
 
 ?>
 
