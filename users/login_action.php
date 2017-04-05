@@ -90,7 +90,7 @@ if ($userSelect > 0) {
     if ($userSelect['role'] == 'manager') {
         header("Location:../manager_driver/index.php?department_id=" . $deptID);
     } elseif ($userSelect['role'] == 'student') {
-        header("Location:../student_driver/student_home.php");
+        header("Location:../student_driver/student_home.php?departmentID=" . $deptID);
     } else {
         //header("Location:../login.php");
         $errorResponse = "User has unrecognized role.";
