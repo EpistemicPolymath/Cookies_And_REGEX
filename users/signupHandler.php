@@ -34,12 +34,12 @@ if(!(preg_match("/[a-zA-Z0-9]{4,10}/", $username))) {
 } # This elseif should should use foreach to compare $allUsernames with the users $username elseif(){}
 
 // Here goes the code to compare the database to see if the username matches an existing one.
-if(!(preg_match([], $username))) {
-
-    $error = 2;
-
-
-}
+//if(!(preg_match([], $username))) {
+//
+//    $error = 2;
+//
+//
+//}
 
 /*
  This elseif should if password matches the following:
@@ -49,7 +49,7 @@ if(!(preg_match([], $username))) {
 (d) All remaining characters can be [a-z] or [0-9].
 */
 
-elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $password))) {
+elseif (!(preg_match("/(?=.*?[#!@])(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/", $password))) {
 
     $error = 3;
 
