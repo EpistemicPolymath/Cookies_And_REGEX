@@ -34,6 +34,12 @@ if(!(preg_match("/[a-zA-Z0-9]{4,10}/", $username))) {
 } # This elseif should should use foreach to compare $allUsernames with the users $username elseif(){}
 
 // Here goes the code to compare the database to see if the username matches an existing one.
+if(!(preg_match([], $username))) {
+
+    $error = 2;
+
+
+}
 
 /*
  This elseif should if password matches the following:
@@ -42,6 +48,7 @@ if(!(preg_match("/[a-zA-Z0-9]{4,10}/", $username))) {
 (c) Should have one character from !,#,@.
 (d) All remaining characters can be [a-z] or [0-9].
 */
+
 elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $password))) {
 
     $err = 3;
@@ -54,6 +61,27 @@ elseif (!(preg_match("/^.*[!#@](?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $pa
 elseif (!($password == $confirmPassword)) {
 
     $err = 4;
+
+}
+
+
+/*
+ This elseif should if Gender matches the following:
+(a) Male || Female || Other
+*/
+elseif ($userGender != 'Male' || 'Female' || 'Other') {
+
+    $err = 6;
+
+}
+
+/*
+ This elseif should if Role matches the following:
+(a) Student || Manager
+*/
+elseif ($userRole != 'Student' || 'Manager') {
+
+    $err = 7;
 
 }
 
@@ -74,7 +102,7 @@ elseif (!(preg_match("/[a-zA-Z0-9[.-_]]@[a-zA-Z0-9.][com]+/", $userEmail))) {
 
 #This is error 9 you need to keep going in order from the errors
 #in user_signup_form.php checking everything that is required in the PDF for HW6
-elseif(!isset($userAgreement))
+elseif($userAgreement != 'accepted')
 {
 
     $error = 8;
