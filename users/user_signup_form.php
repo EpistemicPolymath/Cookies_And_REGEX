@@ -51,7 +51,8 @@ $queryAllDepartments->closecursor();
                 case 3: ?>
                     <!-- Error 3 -->
                     <div class="error">
-                        Password should be at least 8 characters, 1 upper case letter [A-Z], 1 digit [0-9], and one special character
+                        Password should be at least 8 characters, 1 upper case letter [A-Z], 1 digit [0-9], and one
+                        special character
                         !,#,@.
                     </div>
                     <?php break;
@@ -62,33 +63,39 @@ $queryAllDepartments->closecursor();
                     </div>
                     <?php break;
                 case 5: ?>
-                    <!-- Error 6 -->
+                    <!-- Error 5-->
                     <div class="error">
                         Please select a gender.
                     </div>
                     <?php break;
                 case 6: ?>
-                    <!-- Error 7 -->
+                    <!-- Error 6 -->
                     <div class="error">
                         Please select a role.
                     </div>
                     <?php break;
                 case 7: ?>
-                    <!-- Error 8 -->
+                    <!-- Error 7-->
                     <div class="error">
                         Please enter the correct email format.
                     </div>
                     <?php break;
                 case 8: ?>
-                    <!-- Error 9 -->
+                    <!-- Error 8 -->
                     <div class="error">
                         Please accept the terms.
                     </div>
                     <?php break;
                 case 9: ?>
-                    <!-- Error 10 -->
+                    <!-- Error 9 -->
                     <div class="error">
                         Firstname and Lastname should only contain characters [A-Z] or [a-z]
+                    </div>
+                    <?php break;
+                case 10: ?>
+                    <!-- Error 10 -->
+                    <div class="error">
+                        Email is already in use.
                     </div>
                     <?php break; ?>
                 <?php } endif; ?>

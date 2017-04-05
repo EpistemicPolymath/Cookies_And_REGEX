@@ -13,19 +13,31 @@ $userRole = filter_input(INPUT_POST, "role");
 $userDept = filter_input(INPUT_POST, "dept");
 $userAgreement = filter_input(INPUT_POST, "accepted");
 
-print_r($userDept);
-print_r($userRole);
-print_r($userGender);
-print_r($firstname);
-print_r($lastname);
-print_r($userEmail);
 
-# Get all usernames currently in the database
-$queryUsersUsernames = $db->prepare("SELECT username
-                                      FROM users");
-$queryUsersUsernames->execute();
-$allUsernames = $queryUsersUsernames->fetchAll();
+
+# Compare user's new username to usernames currently in the database
+#Gets a count of all rows that match the userName, should only be 1 row since userName is unique
+$queryUsersUsernames = $db->prepare("SELECT Count(*)
+                                      FROM users
+                                      WHERE userName = :userName");
+$queryUsersUsernames->execute(array(
+    ":userName" => $username
+));
+$checkUsername = $queryUsersUsernames->fetchColumn();
 $queryUsersUsernames->closecursor();
+
+
+# Compare user's inputted email to emails currently in the database
+#Gets a count of all rows that match the email, should only be 1 row since email is unique
+$queryUsersEmails = $db->prepare("SELECT Count(*)
+                                      FROM users
+                                      WHERE email = :email");
+$queryUsersEmails->execute(array(
+    ":email" => $userEmail
+));
+$checkEmail = $queryUsersEmails->fetchColumn();
+$queryUsersEmails->closecursor();
+
 
 #Set error to 0 by default and through if statements change error, if an error occurs
 $error = 0;
@@ -39,16 +51,15 @@ if(!(preg_match('/^[a-zA-Z0-9]{4,10}$/', $username)  === 1)) {
     header("Location:user_signup_form.php?error=" . $error);
 
 
-} # This elseif should should use foreach to compare $allUsernames with the users $username elseif(){}
-
+}
 // Here goes the code to compare the database to see if the username matches an existing one.
-//if(!(preg_match([], $username))) {
-//
-//    $error = 2;
-//
-//
-//}
 
+elseif($checkUsername == 1) {
+
+    $error = 2;
+    header("Location:user_signup_form.php?error=" . $error);
+
+}
 /*
  This elseif should if password matches the following:
 (a) At least 8 characters. (?=.{8,})
@@ -57,9 +68,7 @@ if(!(preg_match('/^[a-zA-Z0-9]{4,10}$/', $username)  === 1)) {
 (d) All remaining characters can be [a-z] or [0-9]. [a-z][0-9]
 
 (?=.*\d) - Checks for at least 1 digit
-
 */
-
 elseif (!(preg_match('/(?=.{8,})(?=.*[A-Z])(?=.*[!#@])(?=.*\d)(.*[a-z0-9])/', $password) === 1)) {
 
     $error = 3;
@@ -133,11 +142,27 @@ elseif (!(preg_match("/^[a-zA-Z]+$/", $firstname . $lastname) === 1)) {
     $error = 9;
     header("Location:user_signup_form.php?error=" . $error);
 
-}
+} #Checks if email is in use
+ elseif($checkEmail == 1){
+
+    $error = 10;
+     header("Location:user_signup_form.php?error=" . $error);
+ }
 
 #This is where we can put the code to insert the user information into the database.
-#Will confirm this later.
 
+//$queryInsertIntoUsers = $db->prepare("INSERT INTO users (userName, email, password, firstName, lastName, role, deptID, gender)
+//                                     VALUES (:userName, :email, :password, :firstname, :lastname, :role, :deptID, :gender)");
+//$queryInsertIntoUsers->execute(array(
+//        ":userName" => $username,
+//        ":email" => $userEmail,
+//        ":password" => $password,
+//        ":firstname" => $firstname,
+//        ":lastname" => $lastname,
+//        ":role" => $userRole,
+//        ":deptID" => $userDept,
+//        ":gender" => $userGender
+//));
 
 ?>
 
